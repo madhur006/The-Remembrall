@@ -1,0 +1,8 @@
+# column names which contain 'ctr' 
+columns_with_ctr = [
+    col for col in df.columns
+    if 'ctr' in col.lower()
+]
+
+# use numpy to create new column based on conditions 
+df['linkage'] = np.where(df['prob'] >= 0.8, 'match', 'nonmatch')
