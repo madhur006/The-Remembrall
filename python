@@ -6,3 +6,9 @@ columns_with_ctr = [
 
 # use numpy to create new column based on conditions 
 df['linkage'] = np.where(df['prob'] >= 0.8, 'match', 'nonmatch')
+
+# return the rows where the stages are maximum eg 5 
+df_max_rows = df.loc[df.groupby("cluster_id")["stage"].idxmax()]
+
+# get the minimum date in each cluster and then convert it into an dataframe by using reset_index
+df_min_date = df.groupby('cluster_id')['registerationDate'].min().reset_index()
