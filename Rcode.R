@@ -12,3 +12,11 @@ write.xlsx(
   colNames = TRUE, 
   rowNames = FALSE 
 )
+
+# percent and number
+df %>%
+  summarize(
+    count_of_ones = sum(cat_column == 1),
+    total_count = n(),
+    percent_of_ones = (count_of_ones / total_count) * 100
+  )
