@@ -28,3 +28,29 @@ plot(km_weighted, xlab = 'years since listing',
     ylab = 'survival probability (no death/removal)',
     lty = 1:2, col = c('blue', 'red'))
 legend('bottomleft', legend = c('Non-HOPE', 'HOPE'), col = c('blue', 'red'), lty = 1:2)
+
+# Competing risks analysis of all waitlist outcomes
+# if we are no longer looking only at death/removal, but all possible outcomes that a liver transplant candidate may experience while on the waitlist 
+
+# Fine-Gray and cumulative incidence 
+library(cmprsk)
+
+# ftime = followup time, fstatus = event code, group = hope
+ci <- cuminc(ftime = df$time_wait, 
+            fstatus = df$event_type,
+            group = df$hope)
+
+plot(ci, lty = 1:2, col = c("blue", "red", "green"))
+legend("topleft",
+      legend = names(ci),
+      col = c("blue", "red", "green"),
+      lty = 1:2)
+
+# fine-gray regression (to test statistical difference)
+
+fg_ddlt <- crr(ftime = df$time_wait, 
+              fstatus = df$event_tpye, 
+              cov1 = data.frame(hope = df$hope),
+              failcode = 1, 
+              cencode = 0)
+summary(fg_ddlt)
