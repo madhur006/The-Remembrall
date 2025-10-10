@@ -20,3 +20,9 @@ df1.to_excel(writer, sheet_name='sheet_one', index=False)
 df2.to_excel(writer, sheet_name='sheet_two', index=False)
 writer.close()  # important to save file 
 
+# filter columns whose name contains ctr
+columns_with_ctr = df.filter(regex='(?i)ctr', axis=1).columns.tolist()
+
+# convert float column to str (eg Id column)
+nkr['col'] = df['col'].astype(int) # convert 234.0 to 234 
+nkr['col'] = df['col'].astype(str) # convert 234 to str
