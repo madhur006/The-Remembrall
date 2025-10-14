@@ -26,3 +26,6 @@ columns_with_ctr = df.filter(regex='(?i)ctr', axis=1).columns.tolist()
 # convert float column to str (eg Id column)
 nkr['col'] = df['col'].astype(int) # convert 234.0 to 234 
 nkr['col'] = df['col'].astype(str) # convert 234 to str
+
+# count of rows (or unique IDs) belonging to each cluster_id
+df['cluster_size'] = df.groupby('cluster_id')['unique_id'].transform('size')
