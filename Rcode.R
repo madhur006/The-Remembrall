@@ -1,3 +1,6 @@
+# find the working directory 
+getwd()
+
 # excel files with multile sheets
 
 excel_data_list <- list(
