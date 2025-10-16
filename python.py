@@ -29,3 +29,9 @@ nkr['col'] = df['col'].astype(str) # convert 234 to str
 
 # count of rows (or unique IDs) belonging to each cluster_id
 df['cluster_size'] = df.groupby('cluster_id')['unique_id'].transform('size')
+
+# sort by 2 columns 
+df.sort_values(by=['col1', 'col2'], ascending=[False, False])
+
+# convert scientific notation to readable 
+df['match_probability'] = df['match_probability'].map('{:.2f}'.format)
