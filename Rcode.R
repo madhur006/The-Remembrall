@@ -23,3 +23,7 @@ df %>%
     total_count = n(),
     percent_of_ones = (count_of_ones / total_count) * 100
   )
+
+# find the column with this name
+df %>%
+  select(contains("FIRST", ignore.case = FALSE))
