@@ -35,3 +35,11 @@ df.sort_values(by=['col1', 'col2'], ascending=[False, False])
 
 # convert scientific notation to readable 
 df['match_probability'] = df['match_probability'].map('{:.2f}'.format)
+
+# check if clusters have df_2 (since we know df_2 all records are unique) more than once in cluster
+df_2only = df_cluster[df_cluster['source_dataset'] == 'df_2']    # seperate the df2 rows
+df_2only_count = df_2only.groupby('cluster_id')['unique_id'].nunique().reset_index(name='df_2only_count') # count number of uniqueids in a cluster, reset index - put them in df
+red_flag_clusters = df_2only_count[df_2only_count['df_2only_count'] > 1]  # clusters with more than 1 df2
+len(red_flag_clusters)
+
+
