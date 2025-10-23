@@ -33,3 +33,12 @@ df %>%
 cols_df1 <- names(df1)
 cols_df2 <- names(df2)
 intersect(cols_df1, cols_df2)
+
+# gtsummary 
+df %>% 
+  tbl_summary(
+    by = era,
+    label = list(
+      AGE_VAR ~ 'AGE',
+      KDPI_VAR ~ 'KDPI')
+  )
