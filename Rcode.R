@@ -27,3 +27,9 @@ df %>%
 # find the column with this name
 df %>%
   select(contains("FIRST", ignore.case = FALSE))
+
+
+# find common columns in 2 datasets
+cols_df1 <- names(df1)
+cols_df2 <- names(df2)
+intersect(cols_df1, cols_df2)
