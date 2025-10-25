@@ -43,3 +43,17 @@ df %>%
       AGE_VAR ~ 'AGE',
       KDPI_VAR ~ 'KDPI')
   )
+
+
+# Date time manipulation 
+# isolate month from date 
+mutate(months = format(
+  floor_date(recovery_date, unit = "month"), "%Y-%m")
+      )
+
+# isolate quater from date
+
+
+## GGPLOT 
+# save ggplot 
+ggsave("filename.png", plot = my_plot, device = "png", width = 6, height = 4, units = "in")
