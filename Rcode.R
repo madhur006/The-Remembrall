@@ -64,8 +64,21 @@ mutate(months = format(
       )
 
 # isolate quater from date
+mutate(quater_col = quarter(recovery_date, with_year = TRUE))
 
 
 ## GGPLOT 
 # save ggplot 
 ggsave("filename.png", plot = my_plot, device = "png", width = 6, height = 4, units = "in")
+
+
+p1 <- ggplot(
+  table_year, aes(x = year_col, y = recovery_date)) +
+  geom_line(linewidth = 0.5)+      # width of line 
+  geom_point(size = 0.5)+          # the point size 
+  labs(
+    title = 'Quaterly Trend of recovery rate by years',
+    x = 'years'
+  )+ 
+  theme_minimal()+
+  expand_limits(y = 0)          # start with 0 on y axis 
