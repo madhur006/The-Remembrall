@@ -17,6 +17,7 @@ write.xlsx(
   rowNames = FALSE 
 )
 
+# group by 
 # percent and number
 df %>%
   summarize(
@@ -24,6 +25,14 @@ df %>%
     total_count = n(),
     percent_of_ones = (count_of_ones / total_count) * 100
   )
+
+df %>%
+  mutate(year_col = year(date_col)) %>%
+  group_by(year_col) %>% 
+  summarise(
+    NA_Count = sum(is.na(DCD_cat)),
+    Empty_String_Count = sum(DCD_cat == "", na.rm = TRUE)) 
+
 
 # find the column with this name
 df %>%
