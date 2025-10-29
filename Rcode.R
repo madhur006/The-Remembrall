@@ -1,9 +1,12 @@
 # find the working directory 
 getwd()
 
+# is there any duplicated 
+any(duplicated(donors_saf$DONOR_ID))
+
+
 # excel files with multile sheets
 library(openxlsx)
-
 excel_data_list <- list(
   "sheetname1" = df1,
   "sheetname2" = df2,
