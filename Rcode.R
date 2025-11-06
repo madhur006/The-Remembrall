@@ -4,6 +4,22 @@ getwd()
 # is there any duplicated 
 any(duplicated(donors_saf$DONOR_ID))
 
+# missing values 
+
+
+df %>%
+  summarise(
+    across(
+      .cols = c(col1, col2), 
+      .fns = list(
+        Count = ~sum(is.na(.)),
+        Percent = ~sum(is.na(.)) / n() * 100
+      ),
+      .names = "{.col}_{.fn}"
+    )
+
+
+
 
 # excel files with multile sheets
 library(openxlsx)
