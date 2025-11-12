@@ -1,0 +1,3 @@
+when doing by time (years, months) always check if the latest time have data or not. is there a lag? 
+create IQR and and median for continous and % and count for all the variable we are using. It will most probably be needed in the abstract. 
+color co-ordination in the graph (avoid red)
