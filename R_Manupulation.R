@@ -107,6 +107,38 @@ df %>%
   )
 
 
+
+# gt summary 
+                                              
+
+table_1 <- df %>% 
+  tbl_summary(
+    by = era,
+    type = list(BMI ~ "continuous"),
+    statistic = list(
+      all_continuous() ~ '{median} ({p25}, {p75})',
+      all_categorical() ~ '{n} ({p}%)'
+    ),
+    label = list(
+      AGE_ ~ "AGE",
+      AGE_CATEGORY ~ "AGE CATEGORY",
+      BMI ~ "BMI",
+      GENDER ~ "GENDER",
+      Hypertension_h ~ "HYPERTENSION",
+      high_risk ~ 'HIGH RISK',
+      high_risk_sum ~ 'HIGH RISK SUM'
+    )
+    #   missing = 'no'
+  ) %>% 
+  add_overall() %>% 
+  #modify_header(label ~ '**Variables**') %>% 
+  bold_labels() %>% 
+  modify_caption("**Title of the Table**") %>% 
+  as_gt()
+
+
+                                              
+
 # Date time manipulation 
 # isolate month from date 
 mutate(months = format(
