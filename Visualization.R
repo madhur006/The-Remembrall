@@ -52,3 +52,18 @@ p <- df_longer %>%
 ggsave("plot1.png", 
        plot = p, device = "png", width = 10, height = 8, units = "in")
 
+
+
+
+
+# scales library - here for number 
+  geom_text(aes(label = scales::label_number(accuracy = 0.01)(values)),
+            vjust = -1.5,
+            size = 3, # Increased data label font size
+            show.legend = FALSE) 
+
+# scales library - percent
+  geom_text(aes(label = scales::label_percent(accuracy = 0.1)(values)),                   
+            vjust = -1.5,                                                                
+            size = 5,                                                                    
+            show.legend = FALSE)
