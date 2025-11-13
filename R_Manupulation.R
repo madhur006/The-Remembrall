@@ -57,15 +57,25 @@ df %>%
   summarize(
     count_of_ones = sum(cat_column == 1),
     total_count = n(),
-    percent_of_ones = (count_of_ones / total_count) * 100
+    percent_of_ones = (count_of_ones / total_count) * 100,
+    yes_dcd_txed = sum(col1[!is.na(dob) & state %in% c("NJ", "NY")] == '1', na.rm = TRUE)
   )
 
+df %>%
+  summarize(
+    age_25 = quantile(age, probs = 0.25, na.rm = TRUE), 
+    age_50 = quantile(age, probs = 0.50, na.rm =  TRUE),
+    age_75 = quantile(age, probs = 0.75, na.rm = TRUE), 
+  )
+                                              
+
+                                              
 df %>%
   mutate(year_col = year(date_col)) %>%
   group_by(year_col) %>% 
   summarise(
-    NA_Count = sum(is.na(DCD_cat)),
-    Empty_String_Count = sum(DCD_cat == "", na.rm = TRUE)) 
+    NA_Count = sum(is.na(col1)),
+    Empty_String_Count = sum(col1 == "", na.rm = TRUE)) 
 
 
 # find the column with this name
