@@ -27,14 +27,14 @@ p <- df_longer %>%
   coord_cartesian(ylim = c(0, max(table_offer_4_longer$values) * 1.15)) +                 # so the y axis from top doesnt cut-off
   scale_y_continuous(labels = scales::label_percent()) +                                  # y axis as percent
   scale_x_continuous(                                                                      # x axis continuous - break or show all years 
-    breaks = unique(table_offer_4_longer$c_yr),
+    breaks = unique(df_longer$yr),
     labels = scales::label_number(accuracy = 1, big.mark = "")                           # labels using scales here 
   ) +
   labs(
-    title = "Non-use rate (NUR) per kidney donor offered and recovered for the purpose of transplant over time",
+    title = "Trend of rates",
     x = "Year",
-    y = "Non-Use Rate",
-    color = "Non-Use Rate"
+    y = "rate",
+    color = "rate"          # interesting - what is this? 
   ) +
   theme_classic(base_size = 13) +                                                       # Increase base font size for all text elements
   theme(       
@@ -67,3 +67,8 @@ ggsave("plot1.png",
             vjust = -1.5,                                                                
             size = 5,                                                                    
             show.legend = FALSE)
+
+scale_y_continuous(labels = scales::label_percent()) +                                  
+scale_x_continuous(                                                                    
+    breaks = unique(df_longer$yr),
+    labels = scales::label_number(accuracy = 1, big.mark = "")    
