@@ -1,5 +1,7 @@
 # find the working directory 
 getwd()
+df1 <- readxl::read_excel("file1.xlsx", sheet=1, guess_max=500000) 
+
 
 # is there any duplicated 
 any(duplicated(donors_saf$DONOR_ID))
@@ -37,6 +39,13 @@ write.xlsx(
   rowNames = FALSE 
 )
 
+
+  # filter rows where TEST is not in first name 
+  df1 <- df %>%
+  filter(!(
+    (grepl("TEST", toupper(firstname)))))
+
+    
 
 ### Filter inside a filter
 df %>%
@@ -107,7 +116,14 @@ mutate(months = format(
 # isolate quater from date
 mutate(quater_col = quarter(recovery_date, with_year = TRUE))
 
-
+# MUTATE - case when : new variable based on old one 
+# convert not sure into NA by using case when 
+df1 <- df %>% 
+  mutate(col_new = 
+           case_when(
+             col == 'Not sure' ~ NA_character_,
+             TRUE ~ col
+           ))
 ## GGPLOT 
 # save ggplot 
 ggsave("filename.png", plot = my_plot, device = "png", width = 6, height = 4, units = "in")
