@@ -53,6 +53,36 @@ ggsave("plot1.png",
        plot = p, device = "png", width = 10, height = 8, units = "in")
 
 
+# p2 
+p2 <- ggplot(df_trend, aes(x = year, y = count)) +
+  geom_line() +
+  scale_x_continuous(breaks = pretty_breaks(n = 11)) +
+  #  scale_x_continuous(breaks = seq(min(df_trend$year), max(df_trend$year))) +
+  scale_y_continuous(breaks = pretty_breaks(n = 10)) +
+  labs(
+    title = 'Annual number',
+    x = 'Year',
+    y = 'Count'
+  ) +
+  geom_vline(xintercept = 2015, linetype = "dashed", color = "blue", linewidth = 0.7) +
+  # Add text label 
+  annotate("text", 
+           x = 2015.2, 
+           y = max(df_trend$count, na.rm = TRUE) * 0.5,  # adjust as needed
+           label = "Feb 1, 2015  \ntype 2 diabetes \ncontraindication codified",
+           hjust = 1.1, vjust = 0, angle = 0,
+           size = 3.5, color = "blue") + 
+  geom_vline(xintercept = 2022, linetype = "dashed", color = "red", linewidth = 0.7) +
+  # Add text label 
+  annotate("text", 
+           x = 2022, 
+           y = max(df_trend$count, na.rm = TRUE) * 0.3,  # adjust as needed
+           label = "July 26, 2022 \ntype 2 diabetes \ncontraindication removed",
+           hjust = 1.1, vjust = -1.9, angle = 0,
+           size = 3.5, color = "red") +
+  theme_classic() 
+
+
 
 
 
