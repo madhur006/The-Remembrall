@@ -10,7 +10,7 @@ df_longer <- df %>%
   )
 
 ### visualization lineplot with multiple trendlines 
-df_longer %>%
+p <- df_longer %>%
   ggplot(aes(x = yr, y = values, color = `metric type`)) +
   geom_line(linewidth = 1.3) +
   geom_point(size = 3) +
@@ -45,6 +45,10 @@ df_longer %>%
     axis.text.y = element_text(size = 13), # Increased tick label size
     legend.title = element_text(size = 13, face = "bold"),
     legend.text = element_text(size = 13),
-    plot.margin = unit(c(1.5, 1.5, 1.5, 1.5), "cm")                                     # Increased left margin to 1.5 cm
+    plot.margin = unit(c(1.5, 1.5, 1.5, 1.5), "cm")                                     # Increased left, right, top, bottom margin to 1.5 cm
 
 )
+
+ggsave("plot1.png", 
+       plot = p, device = "png", width = 10, height = 8, units = "in")
+
