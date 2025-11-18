@@ -171,3 +171,14 @@ p1 <- ggplot(
   )+ 
   theme_minimal()+
   expand_limits(y = 0)          # start with 0 on y axis 
+
+
+# add rows 
+df <- df %>% 
+  add_row(ID = 20, Name = "MN") %>% 
+  add_row(ID = 25, Name = "TX") %>% 
+  add_row(ID = 35, Name = "NY")
+
+
+
+                                              
