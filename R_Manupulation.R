@@ -179,6 +179,14 @@ df <- df %>%
   add_row(ID = 25, Name = "TX") %>% 
   add_row(ID = 35, Name = "NY")
 
+# convert to wider df
+df %>%
+  group_by(city) %>% 
+  count(steps) %>% 
+  pivot_wider(
+    names_from = city, 
+    values_from = n
+  ) 
 
 
                                               
