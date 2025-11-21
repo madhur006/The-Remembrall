@@ -17,3 +17,16 @@ model_2 <- glm(count_of_txed ~ era_years +  offset(log(era_days)),
                                  family = poisson,                                             
                                  data = df_summary) %>% 
   tidy(exponentiate = TRUE, conf.int = TRUE, conf.type="profile")
+
+
+
+# view longitudinal data trend
+cleaned_data %>%
+  filter(gcr_result == "Exclude-EWMA-Extreme") %>%
+  pull(subjid) %>%
+  {
+    .subjid_vector <- .
+    cleaned_data %>%
+      filter(subjid %in% .subjid_vector)
+  } %>%
+  arrange(subjid, agedays) %>% view()
