@@ -23,6 +23,21 @@ group_by(year) %>%
 
 
 
+  df %>%
+  summarise(
+    across(
+      .cols = c(col1),
+      .fns = list(
+        NA_Percent = ~sum(is.na(.))/n() * 100,
+        Mean = ~mean(., na.rm = TRUE),
+        Median = ~median(., na.rm = TRUE),
+        SD = ~sd(., na.rm = TRUE),
+        Min = ~min(., na.rm = TRUE),
+        Max = ~max(., na.rm = TRUE)
+      )
+    )
+  )
+
 
 # excel files with multile sheets
 library(openxlsx)
